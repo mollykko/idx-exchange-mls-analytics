@@ -31,3 +31,9 @@ print(f"Rows after Residential filter: {after}")
 out_path = os.path.join(OUTPUT_DIR, 'listings.csv')
 combined.to_csv(out_path, index=False)
 print(f"Saved to {out_path}")
+n3 Scripts/week1_listings.py
+
+# Found 29 listing files
+#Rows after concatenation: 930311
+#Rows before Residential filter: 930311
+#Rows after Residential filter: 591977

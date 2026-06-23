@@ -6,14 +6,16 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'Data')
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), '..', 'Outputs')
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-# Find every sold file in the Data folder
+# Find every sold file in the Data folder including _filled versions
 files = glob.glob(os.path.join(DATA_DIR, 'CRMLSSold*.csv'))
 print(f"Found {len(files)} sold files")
 
-# Read each file and store in a list
+# Read each file, drop the extra columns if they exist, and store in a list
 frames = []
 for f in sorted(files):
     df = pd.read_csv(f, low_memory=False)
+    # Remove the two extra columns that come with _filled files if present
+    df = df.drop(columns=['latfilled', 'lonfilled'], errors='ignore')
     frames.append(df)
 
 # Combine all files into one dataset
@@ -31,3 +33,8 @@ print(f"Rows after Residential filter: {after}")
 out_path = os.path.join(OUTPUT_DIR, 'sold.csv')
 combined.to_csv(out_path, index=False)
 print(f"Saved to {out_path}")
+
+# Found 29 sold files
+#Rows after concatenation: 640335
+#Rows before Residential filter: 640335
+#Rows after Residential filter: 430635
