@@ -42,13 +42,11 @@ Completed:
 Listing dataset:
 - Files found: 29
 - Rows after concatenation: 930,311
-- Rows before Residential filter: 930,311
 - Rows after Residential filter: 591,977
 
 Sold dataset:
 - Files found: 29
 - Rows after concatenation: 640,335
-- Rows before Residential filter: 640,335
 - Rows after Residential filter: 430,635
 
 ## How to Run
